@@ -1,0 +1,38 @@
+;; Kanata configuration for dedicated Copy/Paste/Cut media keys on Linux.
+;;
+;; This config intercepts the hardware Copy/Paste/Cut keys and translates
+;; them to the correct Linux keyboard shortcuts (Ctrl+C, Ctrl+V, Ctrl+X).
+
+(defcfg
+  linux-dev /dev/input/event13
+  process-unmapped-keys no
+)
+
+;; Map raw Linux keycodes to names usable in defsrc/deflayer.
+;; KEY_COPY=133, KEY_PASTE=135, KEY_CUT=137, KEY_UNDO=131, KEY_AGAIN=158 (from evdev)
+(deflocalkeys-linux
+  copy-key 133
+  paste-key 135
+  cut-key 137
+  undo-key 131
+  redo-key 158
+)
+
+;; Intercept the dedicated Copy, Paste, Cut, Undo, and Redo media keys.
+(defsrc
+  copy-key  paste-key  cut-key  undo-key  redo-key
+)
+
+;; Aliases for Linux clipboard and edit shortcuts.
+(defalias
+  cpy C-c
+  pst C-v
+  kut C-x
+  udo C-z
+  rdo C-S-z
+)
+
+;; Default layer: map media keys to Linux Ctrl shortcuts.
+(deflayer base
+  @cpy  @pst  @kut  @udo  @rdo
+)
