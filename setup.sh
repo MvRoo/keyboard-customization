@@ -34,13 +34,13 @@ KANATA_TRAY_BIN="$(command -v kanata-tray)"
 info "kanata-tray: $KANATA_TRAY_BIN"
 info "kanata: $KANATA_BIN"
 
-# ── 3. udev rule (grants seat-user access to the event10 keyboard interface) ──
+# ── 3. udev rule (grants seat-user access to the keyboard interface) ───────────
 
 UDEV_RULE="/etc/udev/rules.d/99-kanata-silakka54.rules"
 info "Installing udev rule at $UDEV_RULE (requires sudo)..."
 sudo tee "$UDEV_RULE" > /dev/null << 'EOF'
 # Grant the logged-in seat user access to the Squalius-cephalus silakka54
-# keyboard interface that emits undo/redo media keys (event10 on this system).
+# keyboard interface that emits undo/redo media keys.
 SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="Squalius-cephalus silakka54", MODE="0660", GROUP="input", TAG+="uaccess"
 EOF
 
@@ -53,6 +53,10 @@ DEVICE_EVENT=$(grep -rl "Squalius-cephalus silakka54$" \
 
 if [[ -n "$DEVICE_EVENT" ]]; then
     KANATA_INPUT_DEV="/dev/input/$DEVICE_EVENT"
+    # Keep linux.kbd in sync with the currently detected input event node.
+    sed -i "s|^[[:space:]]*linux-dev .*|  linux-dev $KANATA_INPUT_DEV|" "$KBD_CONFIG"
+    info "Set linux-dev in $KBD_CONFIG to $KANATA_INPUT_DEV."
+
     sudo udevadm trigger --action=add "/dev/input/$DEVICE_EVENT"
     if [[ -r "$KANATA_INPUT_DEV" && -w "$KANATA_INPUT_DEV" ]]; then
         info "Access verified on $KANATA_INPUT_DEV."
