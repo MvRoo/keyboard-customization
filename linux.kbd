@@ -8,29 +8,20 @@
 )
 
 ;; Map raw Linux keycodes to names usable in defsrc/deflayer.
-;; KEY_AGAIN=129, KEY_UNDO=131, KEY_COPY=133, KEY_PASTE=135, KEY_CUT=137, KEY_REDO=182.
-;; Some firmware reports redo as KEY_AGAIN, so both are handled.
+;; KEY_AGAIN=129, KEY_UNDO=131, KEY_COPY=133, KEY_PASTE=135, KEY_CUT=137.
 (deflocalkeys-linux
   again-key 129
   copy-key 133
   paste-key 135
   cut-key 137
   undo-key 131
-  redo-key 182
 )
 
-;; Intercept dedicated Copy, Paste, Cut, Undo, Again, and Redo media keys.
+;; Intercept dedicated Copy, Paste, Cut, Undo, and Again media keys.
 (defsrc
-  copy-key  paste-key  cut-key  undo-key  again-key  redo-key
-)
-
-;; Copy/paste/cut pass through natively.
-;; Undo/redo are translated to Ctrl+Z / Ctrl+Shift+Z for Electron apps like VSCodium.
-(defalias
-  udo (macro C-z)
-  rdo (macro C-S-z)
+  copy-key  paste-key  cut-key  undo-key  again-key
 )
 
 (deflayer base
-  _  _  _  @udo  @rdo  @rdo
+  _  _  _  C-z  C-S-z
 )
