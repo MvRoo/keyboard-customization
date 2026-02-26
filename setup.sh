@@ -27,29 +27,40 @@ fi
 info "Installing kanata and kanata-tray..."
 brew install kanata kanata-tray
 
+BREW_PREFIX="$(brew --prefix)"
+KANATA_BIN="$BREW_PREFIX/bin/kanata"
 KANATA_TRAY_BIN="$(command -v kanata-tray)"
+[[ -x "$KANATA_BIN" ]] || error "kanata binary not found at $KANATA_BIN"
 info "kanata-tray: $KANATA_TRAY_BIN"
+info "kanata: $KANATA_BIN"
 
-# ── 3. udev rule (grants seat-user access to Consumer Control device) ────────
+# ── 3. udev rule (grants seat-user access to the event10 keyboard interface) ──
 
 UDEV_RULE="/etc/udev/rules.d/99-kanata-silakka54.rules"
 info "Installing udev rule at $UDEV_RULE (requires sudo)..."
 sudo tee "$UDEV_RULE" > /dev/null << 'EOF'
 # Grant the logged-in seat user access to the Squalius-cephalus silakka54
-# Consumer Control device, so kanata can intercept undo/redo media keys.
-SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="Squalius-cephalus silakka54 Consumer Control", TAG+="uaccess"
+# keyboard interface that emits undo/redo media keys (event10 on this system).
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="Squalius-cephalus silakka54", MODE="0660", GROUP="input", TAG+="uaccess"
 EOF
 
 sudo udevadm control --reload-rules
 
-DEVICE_EVENT=$(grep -rl "Squalius-cephalus silakka54 Consumer Control" \
+DEVICE_EVENT=$(grep -rl "Squalius-cephalus silakka54$" \
     /sys/class/input/*/device/name 2>/dev/null \
     | sed 's|/sys/class/input/\(event[0-9]*\)/device/name|\1|' \
     | head -1)
 
 if [[ -n "$DEVICE_EVENT" ]]; then
+    KANATA_INPUT_DEV="/dev/input/$DEVICE_EVENT"
     sudo udevadm trigger --action=add "/dev/input/$DEVICE_EVENT"
-    info "udev ACL applied to /dev/input/$DEVICE_EVENT."
+    if [[ -r "$KANATA_INPUT_DEV" && -w "$KANATA_INPUT_DEV" ]]; then
+        info "Access verified on $KANATA_INPUT_DEV."
+    else
+        warn "No read/write access to $KANATA_INPUT_DEV as $USER."
+        warn "Run: sudo usermod -aG input $USER"
+        warn "Then log out and log back in before starting kanata-tray."
+    fi
 else
     warn "Keyboard not detected — udev rule will apply automatically when plugged in."
 fi
@@ -93,9 +104,11 @@ info "Installing systemd user service at $SERVICE_FILE..."
 cat > "$SERVICE_FILE" << EOF
 [Unit]
 Description=kanata-tray keyboard remapper
+After=graphical-session.target
 
 [Service]
 Type=simple
+Environment=PATH=$BREW_PREFIX/bin:$BREW_PREFIX/sbin:/usr/local/bin:/usr/bin:/bin
 ExecStart=$KANATA_TRAY_BIN
 Restart=on-failure
 RestartSec=5

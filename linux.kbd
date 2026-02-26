@@ -1,38 +1,36 @@
-;; Kanata configuration for dedicated Copy/Paste/Cut media keys on Linux.
+;; Kanata configuration for dedicated media keys on the Squalius-cephalus silakka54.
 ;;
-;; This config intercepts the hardware Copy/Paste/Cut keys and translates
-;; them to the correct Linux keyboard shortcuts (Ctrl+C, Ctrl+V, Ctrl+X).
+;; Intercepts the keyboard interface that emits Copy/Paste/Cut/Undo/Redo media keys.
 
 (defcfg
-  linux-dev /dev/input/event13
+  linux-dev /dev/input/event10
   process-unmapped-keys no
 )
 
 ;; Map raw Linux keycodes to names usable in defsrc/deflayer.
-;; KEY_COPY=133, KEY_PASTE=135, KEY_CUT=137, KEY_UNDO=131, KEY_AGAIN=158 (from evdev)
+;; KEY_AGAIN=129, KEY_UNDO=131, KEY_COPY=133, KEY_PASTE=135, KEY_CUT=137, KEY_REDO=182.
+;; Some firmware reports redo as KEY_AGAIN, so both are handled.
 (deflocalkeys-linux
+  again-key 129
   copy-key 133
   paste-key 135
   cut-key 137
   undo-key 131
-  redo-key 158
+  redo-key 182
 )
 
-;; Intercept the dedicated Copy, Paste, Cut, Undo, and Redo media keys.
+;; Intercept dedicated Copy, Paste, Cut, Undo, Again, and Redo media keys.
 (defsrc
-  copy-key  paste-key  cut-key  undo-key  redo-key
+  copy-key  paste-key  cut-key  undo-key  again-key  redo-key
 )
 
-;; Aliases for Linux clipboard and edit shortcuts.
+;; Copy/paste/cut pass through natively.
+;; Undo/redo are translated to Ctrl+Z / Ctrl+Shift+Z for Electron apps like VSCodium.
 (defalias
-  cpy C-c
-  pst C-v
-  kut C-x
-  udo C-z
-  rdo C-S-z
+  udo (macro C-z)
+  rdo (macro C-S-z)
 )
 
-;; Default layer: map media keys to Linux Ctrl shortcuts.
 (deflayer base
-  @cpy  @pst  @kut  @udo  @rdo
+  _  _  _  @udo  @rdo  @rdo
 )
