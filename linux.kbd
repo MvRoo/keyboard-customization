@@ -8,20 +8,17 @@
 )
 
 ;; Map raw Linux keycodes to names usable in defsrc/deflayer.
-;; KEY_AGAIN=129, KEY_UNDO=131, KEY_COPY=133, KEY_PASTE=135, KEY_CUT=137.
+;; KEY_AGAIN=129, KEY_UNDO=131.
 (deflocalkeys-linux
   again-key 129
-  copy-key 133
-  paste-key 135
-  cut-key 137
   undo-key 131
 )
 
-;; Intercept dedicated Copy, Paste, Cut, Undo, and Again media keys.
+;; Intercept only Undo and Again media keys.
 (defsrc
-  copy-key  paste-key  cut-key  undo-key  again-key
+  undo-key  again-key
 )
 
 (deflayer base
-  _  _  _  C-z  C-S-z
+  C-z  C-S-z
 )
