@@ -1,6 +1,7 @@
 ;; Kanata configuration for dedicated media keys on the Squalius-cephalus silakka54.
 ;;
-;; Intercepts the keyboard interface that emits Copy/Paste/Cut/Undo/Redo media keys.
+;; Intercepts the keyboard interface that emits Undo/Redo media keys
+;; and extra function keys used for word deletion.
 
 (defcfg
   linux-dev /dev/input/event10
@@ -14,11 +15,11 @@
   undo-key 131
 )
 
-;; Intercept only Undo and Again media keys.
+;; Intercept Undo/Again media keys plus F22/F23.
 (defsrc
-  undo-key  again-key
+  undo-key  again-key  f22  f23
 )
 
 (deflayer base
-  C-z  C-S-z
+  C-z  C-S-z  C-bspc  C-del
 )
