@@ -39,9 +39,9 @@ info "kanata: $KANATA_BIN"
 UDEV_RULE="/etc/udev/rules.d/99-kanata-silakka54.rules"
 info "Installing udev rule at $UDEV_RULE (requires sudo)..."
 sudo tee "$UDEV_RULE" > /dev/null << 'EOF'
-# Grant the logged-in seat user access to the Squalius-cephalus silakka54
-# keyboard interface that emits undo/redo media keys.
-SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="Squalius-cephalus silakka54", MODE="0660", GROUP="input", TAG+="uaccess"
+# Grant the logged-in seat user access to all Squalius-cephalus silakka54
+# input interfaces (Keyboard/System Control/Consumer Control/etc.).
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="Squalius-cephalus silakka54*", MODE="0660", GROUP="input", TAG+="uaccess"
 EOF
 
 sudo udevadm control --reload-rules
