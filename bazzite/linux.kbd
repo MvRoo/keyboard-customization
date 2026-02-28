@@ -16,6 +16,7 @@
 )
 
 ;; Intercept Undo/Again media keys plus F22/F23.
+;; F13-F20 available for custom KDE shortcuts (not intercepted here)
 (defsrc
   undo-key  again-key  f22  f23
 )
