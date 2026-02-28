@@ -107,6 +107,13 @@ background = "#50fa7bff"
 text = "#282a36ff"
 THEME_EOF
 
+# Create config file to set default theme
+echo "Creating zlaunch config file..."
+mkdir -p ~/.config/zlaunch
+cat > ~/.config/zlaunch/config.toml << 'CONFIG_EOF'
+theme = "dracula-opaque"
+CONFIG_EOF
+
 # Create desktop entry
 echo "Creating desktop entry..."
 cat > ~/.local/share/applications/zlaunch.desktop << 'DESKTOP_EOF'
@@ -163,7 +170,27 @@ rm -f "/tmp/zlaunch-${LATEST_RELEASE}-x86_64-linux.tar.gz"
 
 echo ""
 echo "================================================"
-echo "zlaunch installation complete!"
+echo ""
+echo "Installed version: $LATEST_RELEASE"
+echo "Binary installed to: ~/.local/bin/zlaunch"
+echo "Theme location: ~/.config/zlaunch/themes/dracula-opaque.toml"
+echo "Config file: ~/.config/zlaunch/config.toml (theme set to dracula-opaque)"
+echo "KDE shortcut: F15 → zlaunch toggle"
+echo ""
+echo "To use zlaunch:"
+echo "  zlaunch              # Start daemon"
+echo "  zlaunch toggle       # Toggle launcher window (or press F15)"
+echo "  zlaunch show         # Show launcher"
+echo "  zlaunch hide         # Hide launcher"
+echo ""
+echo "To customize the shortcut:"
+echo "  System Settings → Shortcuts → Custom Shortcuts → zlaunch"
+echo ""
+echo "To customize the theme:"
+echo "  Edit ~/.config/zlaunch/themes/dracula-opaque.toml"
+echo "  Changes are hot-reloaded automatically!"
+echo ""
+echo "Note: If F15 doesn't work, log out and log back in."
 echo "================================================"
 echo ""
 echo "Installed version: $LATEST_RELEASE"
