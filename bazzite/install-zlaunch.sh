@@ -120,6 +120,42 @@ Terminal=false
 Categories=Utility;
 DESKTOP_EOF
 
+# Create KDE global shortcut
+echo "Creating KDE global shortcut..."
+mkdir -p ~/.config/kglobalaccel
+cat > ~/.config/kglobalaccel/zlaunch.desktop << 'SHORTCUT_EOF'
+[Data]
+DataCount=1
+
+[Data_1]
+Comment=Launch zlauncher
+Enabled=true
+Name=zlaunch
+Type=SIMPLE_ACTION_DATA
+
+[Data_1][Actions]
+ActionsCount=1
+
+[Data_1][Actions][0]
+Type=COMMAND_URL
+
+[Data_1][Actions][0][Arguments]
+Count=1
+
+[Data_1][Actions][0][Arguments][0]
+Command=/home/$USER/.local/bin/zlaunch toggle
+
+[Data_1][Triggers]
+TriggersCount=1
+
+[Data_1][Triggers][0]
+Key=F13
+Type=SHORTCUT
+SHORTCUT_EOF
+
+echo "KDE shortcut created: F13 → zlaunch toggle"
+echo "Note: You may need to log out and log back in for the shortcut to take effect"
+
 # Cleanup
 echo "Cleaning up temporary files..."
 rm -rf "/tmp/zlaunch-${LATEST_RELEASE}-x86_64-linux"
@@ -133,24 +169,22 @@ echo ""
 echo "Installed version: $LATEST_RELEASE"
 echo "Binary installed to: ~/.local/bin/zlaunch"
 echo "Theme location: ~/.config/zlaunch/themes/dracula-opaque.toml"
+echo "KDE shortcut: F13 → zlaunch toggle"
 echo ""
 echo "To use zlaunch:"
 echo "  zlaunch              # Start daemon"
-echo "  zlaunch toggle       # Toggle launcher window"
+echo "  zlaunch toggle       # Toggle launcher window (or press F13)"
 echo "  zlaunch show         # Show launcher"
 echo "  zlaunch hide         # Hide launcher"
 echo ""
-echo "To set up a keybinding in KDE:"
-echo "  1. System Settings → Shortcuts → Custom Shortcuts"
-echo "  2. Edit → New → Global Shortcut → Command/URL"
-echo "  3. Name: zlaunch"
-echo "  4. Command: /home/$USER/.local/bin/zlaunch toggle"
-echo "  5. Trigger: Set your preferred key (e.g., Meta+Space)"
+echo "To customize the shortcut:"
+echo "  System Settings → Shortcuts → Custom Shortcuts → zlaunch"
 echo ""
 echo "To customize the theme:"
 echo "  Edit ~/.config/zlaunch/themes/dracula-opaque.toml"
 echo "  Changes are hot-reloaded automatically!"
 echo ""
+echo "Note: If F13 doesn't work, log out and log back in."
 echo "================================================"
 
 # Optional: Start daemon
