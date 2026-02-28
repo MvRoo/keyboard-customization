@@ -3,7 +3,7 @@
 
 ## Setup
 
-Use **F13** (or any unused function key) to launch zlaunch through KDE shortcuts.
+Use **F15** (or any unused function key) to launch zlaunch through KDE shortcuts.
 
 ### Option 1: Manual KDE Setup
 
@@ -12,7 +12,7 @@ Use **F13** (or any unused function key) to launch zlaunch through KDE shortcuts
 3. Configure:
    - **Name**: `zlaunch`
    - **Command**: `/home/michael/.local/bin/zlaunch toggle`
-   - **Trigger**: Press **F13** (or any unused F-key like F14-F20)
+   - **Trigger**: Press **F15** (or any unused F-key like F14-F20)
 4. **Apply**
 
 ### Option 2: Automatic Setup (requires logout)
