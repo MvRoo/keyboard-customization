@@ -129,36 +129,18 @@ DESKTOP_EOF
 
 # Create KDE global shortcut
 echo "Creating KDE global shortcut..."
-mkdir -p ~/.config/kglobalaccel
-cat > ~/.config/kglobalaccel/zlaunch.desktop << 'SHORTCUT_EOF'
-[Data]
-DataCount=1
 
-[Data_1]
-Comment=Launch zlauncher
-Enabled=true
-Name=zlaunch
-Type=SIMPLE_ACTION_DATA
+# Backup existing kglobalshortcutsrc if it exists
+if [ -f ~/.config/kglobalshortcutsrc ]; then
+    cp ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.backup
+    echo "Backed up existing kglobalshortcutsrc"
+fi
 
-[Data_1][Actions]
-ActionsCount=1
-
-[Data_1][Actions][0]
-Type=COMMAND_URL
-
-[Data_1][Actions][0][Arguments]
-Count=1
-
-[Data_1][Actions][0][Arguments][0]
-Command=$HOME/.local/bin/zlaunch toggle
-
-[Data_1][Triggers]
-TriggersCount=1
-
-[Data_1][Triggers][0]
-Key=F15
-Type=SHORTCUT
-SHORTCUT_EOF
+# Append zlaunch shortcut to kglobalshortcutrc
+# F15 key code is 6 in KDE format
+echo "" >> ~/.config/kglobalshortcutrc
+echo "[services][zlaunch.desktop]" >> ~/.config/kglobalshortcutrc
+echo "_launch=Launch (6)" >> ~/.config/kglobalshortcutrc
 
 echo "KDE shortcut created: F15 → zlaunch toggle"
 echo "Note: You may need to log out and log back in for the shortcut to take effect"
@@ -217,11 +199,12 @@ echo ""
 echo "Installed version: $LATEST_RELEASE"
 echo "Binary installed to: ~/.local/bin/zlaunch"
 echo "Theme location: ~/.config/zlaunch/themes/dracula-opaque.toml"
-echo "KDE shortcut: F13 → zlaunch toggle"
+echo "Config file: ~/.config/zlaunch/config.toml (theme set to dracula-opaque)"
+echo "KDE shortcut: F15 → zlaunch toggle"
 echo ""
 echo "To use zlaunch:"
 echo "  zlaunch              # Start daemon"
-echo "  zlaunch toggle       # Toggle launcher window (or press F13)"
+echo "  zlaunch toggle       # Toggle launcher window (or press F15)"
 echo "  zlaunch show         # Show launcher"
 echo "  zlaunch hide         # Hide launcher"
 echo ""
@@ -232,7 +215,7 @@ echo "To customize the theme:"
 echo "  Edit ~/.config/zlaunch/themes/dracula-opaque.toml"
 echo "  Changes are hot-reloaded automatically!"
 echo ""
-echo "Note: If F13 doesn't work, log out and log back in."
+echo "Note: If F15 doesn't work, log out and log back in."
 echo "================================================"
 
 # Optional: Start daemon
