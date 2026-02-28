@@ -13,7 +13,7 @@ mkdir -p ~/.config/zlaunch/themes
 
 # Fetch latest zlaunch version from GitHub
 echo "Fetching latest zlaunch version..."
-LATEST_RELEASE=$(curl -s https://api.github.com/repos/zortax/zlaunch/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1')
+LATEST_RELEASE=$(curl -s https://api.github.com/repos/zortax/zlaunch/releases/latest | grep '"tag_name":' | cut -d '"' -f 4)
 if [ -z "$LATEST_RELEASE" ]; then
     echo "Error: Failed to fetch latest version from GitHub"
     exit 1
@@ -114,12 +114,11 @@ cat > ~/.local/share/applications/zlaunch.desktop << 'DESKTOP_EOF'
 Type=Application
 Name=zlaunch
 Comment=Fast Wayland Application Launcher
-Exec=/home/__USER__/.local/bin/zlaunch toggle
+Exec=$HOME/.local/bin/zlaunch toggle
 Icon=launcher
 Terminal=false
 Categories=Utility;
 DESKTOP_EOF
-sed -i "s|__USER__|$USER|g" ~/.local/share/applications/zlaunch.desktop
 
 # Create KDE global shortcut
 echo "Creating KDE global shortcut..."
@@ -144,18 +143,17 @@ Type=COMMAND_URL
 Count=1
 
 [Data_1][Actions][0][Arguments][0]
-Command=/home/__USER__/.local/bin/zlaunch toggle
+Command=$HOME/.local/bin/zlaunch toggle
 
 [Data_1][Triggers]
 TriggersCount=1
 
 [Data_1][Triggers][0]
-Key=F13
+Key=F15
 Type=SHORTCUT
 SHORTCUT_EOF
-sed -i "s|__USER__|$USER|g" ~/.config/kglobalaccel/zlaunch.desktop
 
-echo "KDE shortcut created: F13 → zlaunch toggle"
+echo "KDE shortcut created: F15 → zlaunch toggle"
 echo "Note: You may need to log out and log back in for the shortcut to take effect"
 
 # Cleanup
@@ -166,6 +164,27 @@ rm -f "/tmp/zlaunch-${LATEST_RELEASE}-x86_64-linux.tar.gz"
 echo ""
 echo "================================================"
 echo "zlaunch installation complete!"
+echo "================================================"
+echo ""
+echo "Installed version: $LATEST_RELEASE"
+echo "Binary installed to: ~/.local/bin/zlaunch"
+echo "Theme location: ~/.config/zlaunch/themes/dracula-opaque.toml"
+echo "KDE shortcut: F15 → zlaunch toggle"
+echo ""
+echo "To use zlaunch:"
+echo "  zlaunch              # Start daemon"
+echo "  zlaunch toggle       # Toggle launcher window (or press F15)"
+echo "  zlaunch show         # Show launcher"
+echo "  zlaunch hide         # Hide launcher"
+echo ""
+echo "To customize of shortcut:"
+echo "  System Settings → Shortcuts → Custom Shortcuts → zlaunch"
+echo ""
+echo "To customize of theme:"
+echo "  Edit ~/.config/zlaunch/themes/dracula-opaque.toml"
+echo "  Changes are hot-reloaded automatically!"
+echo ""
+echo "Note: If F15 doesn't work, log out and log back in."
 echo "================================================"
 echo ""
 echo "Installed version: $LATEST_RELEASE"
