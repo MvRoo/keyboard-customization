@@ -114,11 +114,12 @@ cat > ~/.local/share/applications/zlaunch.desktop << 'DESKTOP_EOF'
 Type=Application
 Name=zlaunch
 Comment=Fast Wayland Application Launcher
-Exec=/home/$USER/.local/bin/zlaunch toggle
+Exec=/home/__USER__/.local/bin/zlaunch toggle
 Icon=launcher
 Terminal=false
 Categories=Utility;
 DESKTOP_EOF
+sed -i "s|__USER__|$USER|g" ~/.local/share/applications/zlaunch.desktop
 
 # Create KDE global shortcut
 echo "Creating KDE global shortcut..."
@@ -143,7 +144,7 @@ Type=COMMAND_URL
 Count=1
 
 [Data_1][Actions][0][Arguments][0]
-Command=/home/$USER/.local/bin/zlaunch toggle
+Command=/home/__USER__/.local/bin/zlaunch toggle
 
 [Data_1][Triggers]
 TriggersCount=1
@@ -152,6 +153,7 @@ TriggersCount=1
 Key=F13
 Type=SHORTCUT
 SHORTCUT_EOF
+sed -i "s|__USER__|$USER|g" ~/.config/kglobalaccel/zlaunch.desktop
 
 echo "KDE shortcut created: F13 → zlaunch toggle"
 echo "Note: You may need to log out and log back in for the shortcut to take effect"
