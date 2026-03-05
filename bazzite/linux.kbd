@@ -9,18 +9,21 @@
 )
 
 ;; Map raw Linux keycodes to names usable in defsrc/deflayer.
-;; KEY_AGAIN=129, KEY_UNDO=131.
+;; KEY_AGAIN=129, KEY_UNDO=131, KEY_COPY=133, KEY_PASTE=135, KEY_CUT=137.
 (deflocalkeys-linux
   again-key 129
   undo-key 131
+  copy-key 133
+  paste-key 135
+  cut-key 137
 )
 
-;; Intercept Undo/Again media keys plus F22/F23.
+;; Intercept Undo/Again media keys plus F22/F23 and Copy/Paste/Cut.
 ;; F13-F20 available for custom KDE shortcuts (not intercepted here)
 (defsrc
-  undo-key  again-key  f22  f23
+  undo-key  again-key  f22  f23  copy-key  paste-key  cut-key
 )
 
 (deflayer base
-  C-z  C-S-z  C-bspc  C-del
+  C-z  C-S-z  C-bspc  C-del  _  _  _
 )
