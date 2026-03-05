@@ -127,6 +127,29 @@ Terminal=false
 Categories=Utility;
 DESKTOP_EOF
 
+# Create systemd user service for zlaunch daemon autostart
+echo "Creating systemd user service..."
+mkdir -p ~/.config/systemd/user
+cat > ~/.config/systemd/user/zlaunch.service << 'SERVICE_EOF'
+[Unit]
+Description=zlaunch application launcher daemon
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/zlaunch-native
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+SERVICE_EOF
+
+systemctl --user daemon-reload
+systemctl --user enable zlaunch
+systemctl --user restart zlaunch
+echo "zlaunch daemon service enabled and started"
+
 # Create KDE global shortcut
 echo "Creating KDE global shortcut..."
 
