@@ -134,6 +134,7 @@ cat > ~/.config/systemd/user/zlaunch.service << 'SERVICE_EOF'
 [Unit]
 Description=zlaunch application launcher daemon
 After=graphical-session.target
+PartOf=graphical-session.target
 
 [Service]
 Type=simple
@@ -142,7 +143,7 @@ Restart=on-failure
 RestartSec=5
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
 SERVICE_EOF
 
 systemctl --user daemon-reload

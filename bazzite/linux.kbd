@@ -4,7 +4,7 @@
 ;; and extra function keys used for word deletion.
 
 (defcfg
-  linux-dev /dev/input/event10
+  linux-dev-names-include "Squalius-cephalus silakka54"
   process-unmapped-keys no
 )
 
@@ -18,12 +18,13 @@
   cut-key 137
 )
 
-;; Intercept Undo/Again media keys plus F22/F23 and Copy/Paste/Cut.
-;; F13-F20 available for custom KDE shortcuts (not intercepted here)
+;; Intercept Undo/Again media keys plus F21/F22/F23 and Copy/Paste/Cut.
+;; F13: close tab, F14: search, F16: quit app, F17: close all editors
+;; F15 reserved for KDE shortcut (not intercepted here)
 (defsrc
-  undo-key  again-key  f22  f23  copy-key  paste-key  cut-key
+  undo-key  again-key  f13  f14  f21  f22  f23  f16  f17  copy-key  paste-key  cut-key
 )
 
 (deflayer base
-  C-z  C-S-z  C-bspc  C-del  _  _  _
+  C-z  C-S-z  C-w  C-f  (macro S-home bspc)  C-bspc  C-del  C-q  (macro C-k C-w)  C-c  C-v  C-x
 )
