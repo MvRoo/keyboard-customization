@@ -95,11 +95,11 @@
       ],
       [
         "KC_TAB",
-        "M10",
-        "M8",
-        "KC_F15",
-        "M7",
-        "M6"
+        "M4",
+        "M3",
+        "M2",
+        "M1",
+        "M0"
       ],
       [
         "M4",
@@ -471,10 +471,10 @@
       ],
       [
         "KC_TRNS",
-        "KC_RGUI",
-        "KC_RALT",
-        "KC_RCTRL",
-        "KC_RSHIFT",
+        "KC_TRNS",
+        "KC_TRNS",
+        "KC_TRNS",
+        "KC_TRNS",
         "KC_TRNS"
       ],
       [
@@ -694,63 +694,18 @@
       ],
       [
         "tap",
-        "KC_Q"
+        "KC_TAB"
       ],
       [
         "up",
         "KC_LGUI"
-      ]
-    ],
-    [
-      [
-        "down",
-        "KC_LGUI"
-      ],
-      [
-        "tap",
-        "KC_K",
-        "KC_W"
-      ],
-      [
-        "up",
-        "KC_LGUI"
-      ]
-    ],
-    [
-      [
-        "down",
-        "KC_LGUI"
-      ],
-      [
-        "tap",
-        "KC_Z"
-      ],
-      [
-        "up",
-        "KC_LGUI"
-      ]
-    ],
-    [
-      [
-        "down",
-        "KC_LCTRL",
-        "KC_LSHIFT"
-      ],
-      [
-        "tap",
-        "KC_E"
-      ],
-      [
-        "up",
-        "KC_LCTRL",
-        "KC_LSHIFT"
       ]
     ],
     [
       [
         "down",
         "KC_LGUI",
-        "KC_LALT"
+        "KC_LSHIFT"
       ],
       [
         "tap",
@@ -759,37 +714,7 @@
       [
         "up",
         "KC_LGUI",
-        "KC_LALT"
-      ]
-    ],
-    [
-      [
-        "down",
-        "KC_LCTRL",
         "KC_LSHIFT"
-      ],
-      [
-        "tap",
-        "KC_TAB"
-      ],
-      [
-        "up",
-        "KC_LCTRL",
-        "KC_LSHIFT"
-      ]
-    ],
-    [
-      [
-        "down",
-        "KC_LGUI"
-      ],
-      [
-        "tap",
-        "KC_TAB"
-      ],
-      [
-        "up",
-        "KC_LGUI"
       ]
     ],
     [
@@ -804,20 +729,6 @@
       [
         "up",
         "KC_LCTRL"
-      ]
-    ],
-    [
-      [
-        "down",
-        "KC_LGUI"
-      ],
-      [
-        "tap",
-        "KC_B"
-      ],
-      [
-        "up",
-        "KC_LGUI"
       ]
     ],
     [
@@ -838,24 +749,13 @@
         "KC_LCTRL"
       ]
     ],
-    [
-      [
-        "down",
-        "KC_LSHIFT"
-      ],
-      [
-        "tap",
-        "KC_HOME"
-      ],
-      [
-        "up",
-        "KC_LSHIFT"
-      ],
-      [
-        "tap",
-        "KC_BSPACE"
-      ]
-    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
     [],
     [],
     [],
