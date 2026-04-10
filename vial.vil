@@ -162,8 +162,8 @@
         -1,
         -1,
         "KC_BSPACE",
-        "LT4(KC_BSPACE)",
-        "LT5(KC_ENTER)"
+        "KC_DELETE",
+        "KC_ENTER"
       ]
     ],
     [
@@ -319,15 +319,15 @@
         "KC_NO",
         "LCTL(KC_DELETE)",
         "LCTL(KC_BSPACE)",
-        "M11"
+        "KC_TRNS"
       ],
       [
         -1,
         -1,
         -1,
         "KC_BSPACE",
-        "LT4(KC_BSPACE)",
-        "LT5(KC_ENTER)"
+        "KC_DELETE",
+        "KC_ENTER"
       ]
     ],
     [
