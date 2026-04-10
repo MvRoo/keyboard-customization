@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "uid": 5751176265195704471,
+  "uid": 5751176265195704000,
   "layout": [
     [
       [
@@ -21,10 +21,10 @@
       ],
       [
         "KC_CAPSLOCK",
-        "KC_A",
-        "KC_S",
-        "KC_D",
-        "KC_F",
+        "LGUI_T(KC_A)",
+        "LALT_T(KC_S)",
+        "LCTL_T(KC_D)",
+        "LSFT_T(KC_F)",
         "KC_G"
       ],
       [
@@ -61,10 +61,10 @@
       ],
       [
         "KC_NO",
-        "KC_BSLASH",
-        "KC_L",
-        "KC_K",
-        "KC_J",
+        "RGUI_T(KC_BSLASH)",
+        "RALT_T(KC_L)",
+        "RCTL_T(KC_K)",
+        "RSFT_T(KC_J)",
         "KC_H"
       ],
       [
@@ -115,7 +115,7 @@
         "LGUI(KC_X)",
         "LGUI(KC_C)",
         "LGUI(KC_V)",
-        "LGUI(LSFT(KC_Z))"
+        "SGUI(KC_Z)"
       ],
       [
         -1,
@@ -185,10 +185,10 @@
       ],
       [
         "KC_CAPSLOCK",
-        "KC_A",
-        "KC_S",
-        "KC_D",
-        "KC_F",
+        "LGUI_T(KC_A)",
+        "LALT_T(KC_S)",
+        "LCTL_T(KC_D)",
+        "LSFT_T(KC_F)",
         "KC_G"
       ],
       [
@@ -225,10 +225,10 @@
       ],
       [
         "KC_NO",
-        "KC_BSLASH",
-        "KC_L",
-        "KC_K",
-        "KC_J",
+        "RGUI_T(KC_BSLASH)",
+        "RALT_T(KC_L)",
+        "RCTL_T(KC_K)",
+        "RSFT_T(KC_J)",
         "KC_H"
       ],
       [
@@ -267,7 +267,7 @@
       ],
       [
         "M4",
-        "KC_LCTL",
+        "KC_LCTRL",
         "KC_LALT",
         "KC_LGUI",
         "KC_LSHIFT",
@@ -279,7 +279,7 @@
         "LCTL(KC_X)",
         "LCTL(KC_C)",
         "LCTL(KC_V)",
-        "LCTL(LSFT(KC_Z))"
+        "C_S(KC_Z)"
       ],
       [
         -1,
@@ -674,15 +674,17 @@
     [
       [
         "down",
-        "KC_LGUI"
+        "KC_LSHIFT",
+        "KC_LCTRL"
       ],
       [
         "tap",
-        "KC_W"
+        "KC_TAB"
       ],
       [
         "up",
-        "KC_LGUI"
+        "KC_LCTRL",
+        "KC_LSHIFT"
       ]
     ],
     [
@@ -861,35 +863,260 @@
   ],
   "vial_protocol": 6,
   "via_protocol": 9,
-  "tap_dance": [],
+  "tap_dance": [
+    [
+      "KC_LALT",
+      "KC_NO",
+      "KC_NO",
+      "MO(1)",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_ENTER",
+      "KC_RSHIFT",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ],
+    [
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      "KC_NO",
+      200
+    ]
+  ],
   "combo": [
     [
+      "KC_Q",
+      "KC_W",
       "KC_NO",
       "KC_NO",
-      "KC_NO",
-      "KC_NO",
-      "KC_NO"
+      "LGUI(KC_W)"
     ],
     [
+      "KC_Q",
+      "KC_W",
+      "KC_E",
       "KC_NO",
-      "KC_NO",
-      "KC_NO",
-      "KC_NO",
-      "KC_NO"
+      "LGUI(KC_Q)"
     ],
     [
+      "KC_D",
+      "KC_F",
       "KC_NO",
       "KC_NO",
-      "KC_NO",
-      "KC_NO",
-      "KC_NO"
+      "LGUI(KC_F)"
     ],
     [
+      "KC_C",
+      "KC_V",
       "KC_NO",
       "KC_NO",
-      "KC_NO",
-      "KC_NO",
-      "KC_NO"
+      "LGUI(KC_SPACE)"
     ],
     [
       "KC_NO",
@@ -1376,22 +1603,13 @@
       "negative_mod_mask": 0,
       "suppressed_mods": 0,
       "options": 7
-    },
-    {
-      "trigger": "KC_NO",
-      "replacement": "KC_NO",
-      "layers": 65535,
-      "trigger_mods": 0,
-      "negative_mod_mask": 0,
-      "suppressed_mods": 0,
-      "options": 7
     }
   ],
   "alt_repeat_key": [],
   "settings": {
     "1": 0,
     "2": 40,
-    "3": 1,
+    "3": 0,
     "4": 175,
     "5": 5,
     "6": 5000,
